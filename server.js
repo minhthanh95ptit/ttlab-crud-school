@@ -6,18 +6,14 @@ const School = require('./models/School')
 
 const db = require('./config/dbConnect');
 
+const schoolRouter = require('./src/components/school/schoolRouter')
+
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
 db.sequelize.sync();
 
-School.findAll({})
-.then(data =>{
-    console.log(data);
-})
-.catch(err =>{
-    console.log(err);
-})
+app.use('/api/school', schoolRouter);
 
 app.listen(3000, (req, res) =>{
     console.log('RUNNING...')

@@ -18,8 +18,11 @@
   },
   "homepage": "https://gitlab.com/thanhpm/ttlab-crud-school#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "@hapi/joi-date": "^2.0.1",
     "express": "^4.17.1",
     "faker": "^4.1.0",
+    "lodash": "^4.17.20",
     "mysql2": "^2.1.0",
     "sequelize": "^6.3.4"
   },
