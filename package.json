@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon --exec babel-node server.js"
   },
   "repository": {
     "type": "git",
@@ -18,15 +18,20 @@
   },
   "homepage": "https://gitlab.com/thanhpm/ttlab-crud-school#readme",
   "dependencies": {
+    "@babel/node": "^7.10.5",
     "@hapi/joi": "^17.1.1",
     "@hapi/joi-date": "^2.0.1",
+    "babel-preset-es2015": "^6.24.1",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "lodash": "^4.17.20",
     "mysql2": "^2.1.0",
+    "save-dev": "0.0.1-security",
     "sequelize": "^6.3.4"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "nodemon": "^2.0.4",
     "sequelize-cli": "^6.2.0"
   }

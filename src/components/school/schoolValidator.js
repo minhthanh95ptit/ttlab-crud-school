@@ -1,5 +1,5 @@
-const BaseJoi = require('@hapi/joi');
-const Extension = require('@hapi/joi-date');
+import BaseJoi from '@hapi/joi';
+import Extension from '@hapi/joi-date'
 
 const Joi = BaseJoi.extend(Extension);
 
@@ -10,7 +10,7 @@ const validSchema = Joi.object().keys({
     description: Joi.string().max(255).allow(null).allow(''),
 });
 
-module.exports.createValidator = async (req, res, next) =>{
+export async function createValidator(req, res, next) {
     const body = req.body;
     const result = Joi.validate(body, validSchema);
     if(result.error){
@@ -19,7 +19,7 @@ module.exports.createValidator = async (req, res, next) =>{
     }
     next();
 }
-module.exports.updateValidator = async (req, res, next) => {
+export async function updateValidator(req, res, next) {
     const body = req.body;
     const result = Joi.validate(body, validSchema);
     if(result.error){

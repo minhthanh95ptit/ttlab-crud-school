@@ -1,5 +1,5 @@
 'use strict';
-const db = require('../config/dbConnect')
+const db = require('../../config/dbConnect')
 const sequelize = db.sequelize;
 const Sequelize = db.Sequelize;
 
@@ -11,4 +11,4 @@ let School = sequelize.define('Schools', {
     description: Sequelize.STRING
 });
 
-module.exports = School;
+export default School;

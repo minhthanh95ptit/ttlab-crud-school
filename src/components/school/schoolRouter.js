@@ -1,14 +1,14 @@
-const schoolController = require('./schoolController');
-const schoolValidator = require('./schoolValidator');
+import { createValidator, updateValidator } from './schoolValidator';
+import { getAll, getOne, createNewSchool, updateOneSchool, deleteOneSchool } from './schoolController'
 
 const express = require('express');
 
 const router = express.Router();
 
-router.get('/', schoolController.getList);
-router.get('/:id', schoolController.getDetailById);
-router.post('/',schoolController.createSchool, schoolValidator.createValidator);
-router.patch('/:id', schoolController.updateSchoolById, schoolValidator.updateValidator);
-router.delete('/:id', schoolController.deleteSchoolById);
+router.get('/', getAll);
+router.get('/:id', getOne);
+router.post('/',createNewSchool, createValidator);
+router.patch('/:id', updateOneSchool, updateValidator);
+router.delete('/:id', deleteOneSchool);
 
-module.exports = router;
+export default router;

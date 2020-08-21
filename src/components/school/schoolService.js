@@ -1,11 +1,11 @@
-const SchoolModel = require('./../../../models/School')
+import SchoolModel from '../../models/School'
 
-module.exports.getList = () =>{
+export function getList(){
     const rawData = SchoolModel.findAll({});
     return rawData;
 }
 
-module.exports.getDetailById = (id) =>{
+export function getDetailById(id){
     const rawData = SchoolModel.findOne({
         where:{
             id
@@ -14,22 +14,20 @@ module.exports.getDetailById = (id) =>{
     return rawData;
 }
 
-module.exports.createSchool = (school) =>{
+export function createSchool(school){
     const rawData = SchoolModel.create(school)
     return rawData;
 }
 
-module.exports.updateSchoolById = (id, school) =>{
+export function updateSchoolById(id, school){
     const result = SchoolModel.update(school,{
         where:{
             id
         }
     });
-    // console.log(rawData);
     return result;
 }
-
-module.exports.deleteSchoolById = (id) =>{
+export function deleteSchoolById(id){
     const result = SchoolModel.destroy({
         where:{
             id

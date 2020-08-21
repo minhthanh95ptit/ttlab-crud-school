@@ -1,12 +1,10 @@
-const express = require('express');
+import express from 'express';
+import bodyParser from 'body-parser';
+
+import db from './config/dbConnect';
+import schoolRouter from './src/components/school/schoolRouter'
+
 const app = express();
-const bodyParser = require('body-parser');
-
-const School = require('./models/School')
-
-const db = require('./config/dbConnect');
-
-const schoolRouter = require('./src/components/school/schoolRouter')
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());

@@ -2,7 +2,7 @@
 
 const faker = require('faker');
 
-module.exports = {
+export default {
   up: (queryInterface, Sequelize) => {
       let data = [];
       let amount = 100;

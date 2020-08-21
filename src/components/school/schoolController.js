@@ -1,10 +1,11 @@
-const SchoolService = require('./schoolService');
-const _ = require('lodash');
+import { getList, getDetailById, createSchool, updateSchoolById, deleteSchoolById} from './schoolService';
+import _ from 'lodash';
 
 
-module.exports.getList = async (req, res) =>{
+
+export async function getAll(req, res){
     try{
-        const data = await SchoolService.getList();
+        const data = await getList();
         res.json(data);
     }
     catch(error){
@@ -12,19 +13,19 @@ module.exports.getList = async (req, res) =>{
     }
 }
 
-module.exports.getDetailById = async (req, res) => {
+export async function getOne(req, res) {
     const id = req.params.id;
     console.log(id);
     try{
-        const data = await SchoolService.getDetailById(id);
+        const data = await getDetailById(id);
         res.json(data);
     }
-    catch{
-        console.log('Error...')
+    catch(err){
+        console.log('Error...',err)
     }
 }
 
-module.exports.createSchool = async (req, res) => {
+export async function createNewSchool(req, res){
     try{
         const school = {
             name: _.get(req, 'body.name', ''),
@@ -33,7 +34,7 @@ module.exports.createSchool = async (req, res) => {
             email: _.get(req, 'body.email', ''),
             description: _.get(req, 'body.description', '')
         };
-        const newSchool = await SchoolService.createSchool(school);
+        const newSchool = await createSchool(school);
         res.json(newSchool);
     }
     catch(error){
@@ -41,7 +42,7 @@ module.exports.createSchool = async (req, res) => {
     }
 }
 
-module.exports.updateSchoolById = async (req, res) =>{
+export async function updateOneSchool(req, res){
     const id = req.params.id;
     try{
         const school = {
@@ -51,8 +52,9 @@ module.exports.updateSchoolById = async (req, res) =>{
             email: _.get(req, 'body.email', ''),
             description: _.get(req, 'body.description', '')
         };
-        const result = await SchoolService.updateSchoolById(id,school);
-        const newSchool = await SchoolService.getDetailById(id);
+
+        const result = await updateSchoolById(id,school);
+        const newSchool = await getDetailById(id);
         if(result){
             res.json(newSchool)
         }
@@ -63,11 +65,10 @@ module.exports.updateSchoolById = async (req, res) =>{
 }
 
 
-
-module.exports.deleteSchoolById = async (req, res) =>{
+export async function deleteOneSchool(req, res){
     const id = req.params.id;
     try{
-        const result = await SchoolService.deleteSchoolById(id);
+        const result = await deleteSchoolById(id);
 
         if(result){
             res.json("Success")
